@@ -1,25 +1,17 @@
 <header>
     <div id="header-left">
-        <a href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                <!--
-                <path
-                    d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"
-                /></svg
-            ></a
-        >
+        <a href="/">Art website</a>
     </div>
 
     <div id="header-right">
         <a href="/">About Me</a>
-        <a href="/">
-            <!--
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
+        <a href="/">Quote</a>
+        <a href="/" class="svg-link"
+            ><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
                 ><path
-                    d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"
-                /></svg-->
-                >
-            </svg></a
+                    d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
+                /></svg
+            ></a
         >
     </div>
 </header>
@@ -31,17 +23,57 @@
     :global(*) {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
     }
 
+    $header-height: 50px;
+
+    #content {
+        padding-top: $header-height;
+    }
+
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+
     header {
-        background-color: #d9d9d9;
-        height: 50px;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        height: $header-height;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        position: fixed;
+        width: 100vw;
 
         a {
-            display: block;
+            text-decoration: none;
+            vertical-align: middle;
+            height: 100%;
+            line-height: $header-height;
+            vertical-align: middle;
+            color: white;
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            &:hover {
+                background-color: rgba($color: #000000, $alpha: 0.2);
+            }
+        }
+
+        .svg-link {
+            height: $header-height;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                height: 50%;
+            }
+
+            * {
+                fill: white;
+            }
         }
 
         #header-left,
@@ -52,13 +84,7 @@
 
         #header-right {
             justify-content: right;
+            gap: 1rem;
         }
-
-        svg {
-            height: 100%;
-        }
-    }
-
-    #content {
     }
 </style>
