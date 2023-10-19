@@ -45,6 +45,7 @@
         padding-right: 1rem;
         position: fixed;
         width: 100vw;
+        z-index: 999;
 
         a {
             text-decoration: none;
