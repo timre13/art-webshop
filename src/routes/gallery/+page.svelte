@@ -20,7 +20,7 @@
         let images: any[] = [];
         for (let i = 0; i < 3; ++i) {
             let y = await fetch("https://api.thecatapi.com/v1/images/search?limit=10").then(x => x.json());
-            y.forEach(e => {
+            y.forEach((e: { url: any }) => {
                 images.push({ src: e.url, title: "Foobar", description: "Lorem ipsum dolor sit amet" });
                 console.log(e);
             });
