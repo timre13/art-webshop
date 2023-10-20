@@ -38,11 +38,13 @@
         {#await images then result}
             {#each result as image}
                 <div class="gallery-item">
-                    <img
-                        src={image.src
-                            ? image.src
-                            : "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"}
-                    />
+                    <div class="image-div">
+                        <img
+                            src={image.src
+                                ? image.src
+                                : "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"}
+                        />
+                    </div>
                     <h2 class="title">{image.title}</h2>
                 </div>
             {/each}
@@ -64,19 +66,47 @@
             max-width: 300px;
             max-height: 300px;
             overflow: hidden;
-            img {
-                width: 100%;
-            }
-
             position: relative;
             background-color: #eee;
             padding: 1rem;
             border-radius: 3%;
+            cursor: pointer;
+
+            .image-div {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
 
             .title {
                 position: absolute;
-                left: 1rem;
+                left: 0;
                 bottom: 1rem;
+                transform: translateY(3rem);
+                opacity: 0;
+                width: 100%;
+                padding-left: 1rem;
+                margin-bottom: -1rem;
+
+                transition: transform 300ms, opacity 300ms;
+                transition-timing-function: ease-in-out;
+
+                color: white;
+                background-color: #00000055;
+            }
+
+            &:hover {
+                .title {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
         }
     }
