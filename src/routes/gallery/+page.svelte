@@ -13,42 +13,27 @@
         }
     }
 
-    //import images from "./images.json";
-    //console.log(images[0].src);
-
-    async function sdasdfsdf() {
-        let images: any[] = [];
-        for (let i = 0; i < 3; ++i) {
-            let y = await fetch("https://api.thecatapi.com/v1/images/search?limit=10").then(x => x.json());
-            y.forEach((e: { url: any }) => {
-                images.push({ src: e.url, title: "Foobar", description: "Lorem ipsum dolor sit amet" });
-                console.log(e);
-            });
-        }
-        return images;
-    }
-
-    let images = sdasdfsdf();
+    import images from "./images.json";
+    import OrderPopup from "../../components/OrderPopup.svelte";
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
 <div id="content-inner">
     <p>Foobar</p>
     <div id="gallery">
-        {#await images then result}
-            {#each result as image}
-                <div class="gallery-item">
-                    <div class="image-div">
-                        <img
-                            src={image.src
-                                ? image.src
-                                : "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"}
-                        />
-                    </div>
-                    <h2 class="title">{image.title}</h2>
+        {#each images as image}
+            <div class="gallery-item">
+                <div class="image-div">
+                    <img
+                        src={image.src
+                            ? image.src
+                            : "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg"}
+                    />
                 </div>
-            {/each}
-        {/await}
+                <h2 class="title">{image.title}</h2>
+            </div>
+        {/each}
+        <OrderPopup image={images[3]} />
     </div>
 </div>
 
