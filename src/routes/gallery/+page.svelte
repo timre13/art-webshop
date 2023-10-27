@@ -15,14 +15,23 @@
 
     import images from "./images.json";
     import OrderPopup from "../../components/OrderPopup.svelte";
+
+    let openImage: number = -1;
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div id="content-inner">
     <p>Foobar</p>
     <div id="gallery">
-        {#each images as image}
-            <div class="gallery-item">
+        {#each images as image, index}
+            <div
+                class="gallery-item"
+                on:click={() => {
+                    openImage = index;
+                }}
+            >
                 <div class="image-div">
                     <img
                         src={image.src
@@ -33,7 +42,7 @@
                 <h2 class="title">{image.title}</h2>
             </div>
         {/each}
-        <OrderPopup image={images[3]} />
+        <OrderPopup bind:imageIndex={openImage} />
     </div>
 </div>
 
