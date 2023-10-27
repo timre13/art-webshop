@@ -1,6 +1,7 @@
 <script lang="ts">
     import { crossfade, draw, fade, scale, slide } from "svelte/transition";
     import images from "../routes/gallery/images.json";
+    import FancyButton from "./FancyButton.svelte";
 
     export let imageIndex: number;
 
@@ -58,11 +59,19 @@
                 <div class="right-col-order-div">
                     <div>
                         <p>Total amount: 0&euro;</p>
-                        <button>Add to cart</button>
+                        <FancyButton
+                            callback={() => {
+                                console.log("Add to cart");
+                            }}>Add to cart</FancyButton
+                        >
                     </div>
                     <div>
                         <p>Download cost: 0&euro;</p>
-                        <button>Download</button>
+                        <FancyButton
+                            callback={() => {
+                                console.log("Add to cart");
+                            }}>Download</FancyButton
+                        >
                     </div>
                 </div>
             </div>
