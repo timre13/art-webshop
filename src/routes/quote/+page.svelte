@@ -44,7 +44,7 @@
         <label>
             Request: <span style="color: red;">*</span>
             <br>
-            <input id="reqf" class="inpf" name="request" type="text">
+            <textarea class="inpf" name="" id="" style="height: 220px;"></textarea>
         </label>
         <br>
         <button type="submit">
@@ -61,15 +61,12 @@
     }
     form{
         margin-left: 67px;
-        vertical-align: middle;
         margin-top: 100px;
     }
     .inpf{
         height: 28px;
         width: 330px;
     }
-    #reqf{
-        height: 220px;
-    }
+
 
 </style>
