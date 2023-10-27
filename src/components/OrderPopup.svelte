@@ -36,9 +36,36 @@
                 e.stopPropagation();
             }}
         >
-            <h2>Ordering</h2>
-            <h3>{images[imageIndex].description}</h3>
-            <img src={images[imageIndex].src} />
+            <div class="left-col">
+                <h2>Ordering</h2>
+                <h3>{images[imageIndex].description}</h3>
+                <img src={images[imageIndex].src} />
+            </div>
+            <div class="right-col">
+                {#each popupOptions as opt}
+                    <div class="right-col-row">
+                        <div class="col-1">
+                            <p>{opt.text}</p>
+                        </div>
+                        <div class="col-2">
+                            <input type="number" />
+                        </div>
+                        <div class="col-3">
+                            <p>{opt.price}&euro;</p>
+                        </div>
+                    </div>
+                {/each}
+                <div class="right-col-order-div">
+                    <div>
+                        <p>Total amount: 0&euro;</p>
+                        <button>Add to cart</button>
+                    </div>
+                    <div>
+                        <p>Download cost: 0&euro;</p>
+                        <button>Download</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -71,6 +98,38 @@
             transform: translate(-50%, -50%);
             width: 70%;
             height: 70%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .left-col {
+                height: 100%;
+            }
+
+            .right-col {
+                .right-col-row {
+                    display: grid;
+                    grid-template-columns: 30rem auto 2rem;
+                    gap: 1rem;
+
+                    input {
+                        width: 3rem;
+                    }
+
+                    * {
+                        display: flex;
+                        justify-content: end;
+                    }
+                }
+
+                .right-col-order-div {
+                    * {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 2rem;
+                    }
+                }
+            }
 
             img {
                 max-width: 80%;
