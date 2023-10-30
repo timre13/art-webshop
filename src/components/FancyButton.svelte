@@ -10,7 +10,7 @@
 
 <style lang="scss">
     .fancy-button {
-        background: red;
+        background: steelblue;
         color: white;
         border-radius: 8px;
         border: none;
