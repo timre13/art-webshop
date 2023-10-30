@@ -17,7 +17,8 @@
         box-shadow: 1px 2px 6px black;
         padding: 0.5rem;
         cursor: pointer;
-        transition-duration: all 200ms;
+        font-size: x-large;
+        min-width: 10rem;
 
         &:hover {
             box-shadow: 1px 2px 8px 1px black !important;
