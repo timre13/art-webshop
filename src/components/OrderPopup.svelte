@@ -38,26 +38,30 @@
             }}
         >
             <div class="left-col">
-                <h2>Ordering</h2>
-                <h3>{images[imageIndex].description}</h3>
                 <img src={images[imageIndex].src} />
+                <div>
+                    <h2>{images[imageIndex].title}</h2>
+                    <h3>{images[imageIndex].description}</h3>
+                </div>
             </div>
             <div class="right-col">
-                {#each popupOptions as opt}
-                    <div class="right-col-row">
-                        <div class="col-1">
-                            <p>{opt.text}</p>
+                <div class="right-col-top">
+                    {#each popupOptions as opt}
+                        <div class="right-col-row">
+                            <div class="col-1">
+                                <p>{opt.text}</p>
+                            </div>
+                            <div class="col-2">
+                                <input type="number" value="0" />
+                            </div>
+                            <div class="col-3">
+                                <p>{opt.price}&euro;</p>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <input type="number" />
-                        </div>
-                        <div class="col-3">
-                            <p>{opt.price}&euro;</p>
-                        </div>
-                    </div>
-                {/each}
-                <div class="right-col-order-div">
-                    <div>
+                    {/each}
+                </div>
+                <div class="right-col-bottom">
+                    <div class="button-row">
                         <p>Total amount: 0&euro;</p>
                         <FancyButton
                             callback={() => {
@@ -65,7 +69,7 @@
                             }}>Add to cart</FancyButton
                         >
                     </div>
-                    <div>
+                    <div class="button-row">
                         <p>Download cost: 0&euro;</p>
                         <FancyButton
                             callback={() => {
@@ -105,44 +109,72 @@
             box-shadow: 5px 5px 25px 2px black;
             padding: 2rem;
             transform: translate(-50%, -50%);
+            max-width: 100%;
             width: 70%;
             height: 70%;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            flex-wrap: wrap;
 
             .left-col {
                 height: 100%;
+                max-width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+
+                img {
+                    height: 100%;
+                    max-height: 90%;
+                    max-width: 100%;
+                    object-fit: contain;
+                    object-position: 0px 0px;
+                }
             }
 
             .right-col {
-                .right-col-row {
-                    display: grid;
-                    grid-template-columns: 30rem auto 2rem;
-                    gap: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: end;
 
-                    input {
-                        width: 3rem;
-                    }
+                .right-col-top {
+                    .right-col-row {
+                        display: grid;
+                        grid-template-columns: 30rem auto 2rem;
+                        gap: 1rem;
 
-                    * {
-                        display: flex;
-                        justify-content: end;
+                        input {
+                            width: 3rem;
+                        }
+
+                        p {
+                            font-size: large;
+                        }
+
+                        * {
+                            display: flex;
+                            justify-content: end;
+                        }
                     }
                 }
 
-                .right-col-order-div {
-                    * {
+                .right-col-bottom {
+                    .button-row {
                         display: flex;
                         flex-direction: row;
-                        gap: 2rem;
+                        align-items: center;
+                        justify-content: end;
+                        height: 3rem;
+                        gap: 1rem;
+
+                        p {
+                            font-size: x-large;
+                        }
                     }
                 }
-            }
-
-            img {
-                max-width: 80%;
-                max-height: 80%;
             }
         }
     }
