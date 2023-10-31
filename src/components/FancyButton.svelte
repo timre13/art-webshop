@@ -22,10 +22,11 @@
 
         &:hover {
             box-shadow: 1px 2px 8px 1px black !important;
+            background: rgb(90, 140, 181);
         }
 
         &:active {
-            background: #ff7777 !important;
+            background: rgb(134, 183, 222);
         }
     }
 </style>
