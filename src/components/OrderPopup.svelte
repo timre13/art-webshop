@@ -14,21 +14,53 @@
         { text: "100cm x 80cm wall decor print framed", price: 100 },
         { text: "100cm x 80cm wall decor metal print ", price: 95 }
     ];
+
+    let orderCounts: Array<number> = Array(popupOptions.length).fill(0);
+    let orderSum: number = 0;
+
+    $: orderCounts &&
+        (function () {
+            orderCounts = orderCounts.map(x => Math.max(0, x));
+            orderSum = orderCounts.reduce((prev, curr, i) => prev + popupOptions[i].price * curr, 0);
+            showNoItemsMsg = false;
+        })();
+
+    function hidePopup() {
+        orderCounts.fill(0);
+        orderSum = 0;
+        imageIndex = -1;
+        showNoItemsMsg = false;
+    }
+
+    function onAddToCartButtonClick() {
+        console.log("Add to cart");
+        if (orderCounts.every(x => x == 0)) {
+            showNoItemsMsg = true;
+            return;
+        }
+
+        let cartItems: Array<object> = JSON.parse(localStorage.getItem("cartItems") || "[]");
+        console.log(cartItems);
+
+        orderCounts.forEach((val, i) => {
+            if (val != 0) {
+                cartItems.push({ picture: imageIndex, orderType: i, count: val });
+            }
+        });
+
+        console.log(cartItems);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        hidePopup();
+    }
+
+    let showNoItemsMsg: boolean = false;
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 {#if imageIndex != -1}
-    <div
-        id="order-popup"
-        in:fade
-        out:fade
-        on:click={_ => {
-            imageIndex = -1;
-        }}
-        class:visible={imageIndex != -1}
-    >
+    <div id="order-popup" in:fade out:fade on:click={hidePopup} class:visible={imageIndex != -1}>
         <div
             id="popup-content"
             in:scale
@@ -46,13 +78,13 @@
             </div>
             <div class="right-col">
                 <div class="right-col-top">
-                    {#each popupOptions as opt}
+                    {#each popupOptions as opt, i}
                         <div class="right-col-row">
                             <div class="col-1">
                                 <p>{opt.text}</p>
                             </div>
                             <div class="col-2">
-                                <input type="number" value="0" />
+                                <input type="number" bind:value={orderCounts[i]} />
                             </div>
                             <div class="col-3">
                                 <p>{opt.price}&euro;</p>
@@ -61,13 +93,14 @@
                     {/each}
                 </div>
                 <div class="right-col-bottom">
+                    {#if showNoItemsMsg}
+                        <div class="button-row">
+                            <p id="no-item-msg">Please select some items.</p>
+                        </div>
+                    {/if}
                     <div class="button-row">
-                        <p>Total amount: 0&euro;</p>
-                        <FancyButton
-                            callback={() => {
-                                console.log("Add to cart");
-                            }}>Add to cart</FancyButton
-                        >
+                        <p>Total amount: {orderSum}&euro;</p>
+                        <FancyButton callback={onAddToCartButtonClick}>Add to cart</FancyButton>
                     </div>
                     <div class="button-row">
                         <p>Download cost: 0&euro;</p>
@@ -172,6 +205,11 @@
 
                         p {
                             font-size: x-large;
+                        }
+
+                        #no-item-msg {
+                            color: red;
+                            font-size: medium;
                         }
                     }
                 }
