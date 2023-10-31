@@ -24,6 +24,12 @@
             orderSum = orderCounts.reduce((prev, curr, i) => prev + popupOptions[i].price * curr, 0);
         })();
 
+    function hidePopup() {
+        orderCounts.fill(0);
+        orderSum = 0;
+        imageIndex = -1;
+    }
+
     function onAddToCartButtonClick() {
         console.log("Add to cart");
         if (orderCounts.every(x => x == 0)) {
@@ -41,9 +47,7 @@
 
         console.log(cartItems);
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        orderCounts.fill(0);
-        orderSum = 0;
-        imageIndex = -1; // Close popup
+        hidePopup();
     }
 </script>
 
@@ -51,15 +55,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 {#if imageIndex != -1}
-    <div
-        id="order-popup"
-        in:fade
-        out:fade
-        on:click={_ => {
-            imageIndex = -1;
-        }}
-        class:visible={imageIndex != -1}
-    >
+    <div id="order-popup" in:fade out:fade on:click={hidePopup} class:visible={imageIndex != -1}>
         <div
             id="popup-content"
             in:scale
