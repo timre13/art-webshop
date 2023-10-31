@@ -23,6 +23,28 @@
             orderCounts = orderCounts.map(x => Math.max(0, x));
             orderSum = orderCounts.reduce((prev, curr, i) => prev + popupOptions[i].price * curr, 0);
         })();
+
+    function onAddToCartButtonClick() {
+        console.log("Add to cart");
+        if (orderCounts.every(x => x == 0)) {
+            return;
+        }
+
+        let cartItems: Array<object> = JSON.parse(localStorage.getItem("cartItems") || "[]");
+        console.log(cartItems);
+
+        orderCounts.forEach((val, i) => {
+            if (val != 0) {
+                cartItems.push({ picture: imageIndex, orderType: i, count: val });
+            }
+        });
+
+        console.log(cartItems);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        orderCounts.fill(0);
+        orderSum = 0;
+        imageIndex = -1; // Close popup
+    }
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
@@ -72,11 +94,7 @@
                 <div class="right-col-bottom">
                     <div class="button-row">
                         <p>Total amount: {orderSum}&euro;</p>
-                        <FancyButton
-                            callback={() => {
-                                console.log("Add to cart");
-                            }}>Add to cart</FancyButton
-                        >
+                        <FancyButton callback={onAddToCartButtonClick}>Add to cart</FancyButton>
                     </div>
                     <div class="button-row">
                         <p>Download cost: 0&euro;</p>
