@@ -22,17 +22,20 @@
         (function () {
             orderCounts = orderCounts.map(x => Math.max(0, x));
             orderSum = orderCounts.reduce((prev, curr, i) => prev + popupOptions[i].price * curr, 0);
+            showNoItemsMsg = false;
         })();
 
     function hidePopup() {
         orderCounts.fill(0);
         orderSum = 0;
         imageIndex = -1;
+        showNoItemsMsg = false;
     }
 
     function onAddToCartButtonClick() {
         console.log("Add to cart");
         if (orderCounts.every(x => x == 0)) {
+            showNoItemsMsg = true;
             return;
         }
 
@@ -49,6 +52,8 @@
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         hidePopup();
     }
+
+    let showNoItemsMsg: boolean = false;
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
@@ -88,6 +93,11 @@
                     {/each}
                 </div>
                 <div class="right-col-bottom">
+                    {#if showNoItemsMsg}
+                        <div class="button-row">
+                            <p id="no-item-msg">Please select some items.</p>
+                        </div>
+                    {/if}
                     <div class="button-row">
                         <p>Total amount: {orderSum}&euro;</p>
                         <FancyButton callback={onAddToCartButtonClick}>Add to cart</FancyButton>
@@ -195,6 +205,11 @@
 
                         p {
                             font-size: x-large;
+                        }
+
+                        #no-item-msg {
+                            color: red;
+                            font-size: medium;
                         }
                     }
                 }
