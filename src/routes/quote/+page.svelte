@@ -47,7 +47,7 @@
             <textarea class="inpf" name="request" style="height: 220px;"></textarea>
         </label>
         <br>
-        <button type="submit">
+        <button class="fancy-button" type="submit">
             Submit
         </button>
     </form>
