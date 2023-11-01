@@ -2,9 +2,10 @@
     import type { MouseEventHandler } from "svelte/elements";
 
     export let callback: MouseEventHandler<HTMLElement>;
+    export let isEnabled: boolean = true;
 </script>
 
-<button class="fancy-button" on:click={callback}>
+<button class="fancy-button" on:click={callback} disabled={!isEnabled}>
     <slot />
 </button>
 
@@ -27,6 +28,11 @@
 
         &:active {
             background: rgb(134, 183, 222);
+        }
+
+        &:disabled {
+            background: grayscale($color: steelblue);
+            cursor: not-allowed;
         }
     }
 </style>
