@@ -2,6 +2,8 @@
     import { onMount } from "svelte";
     import imageData from "../gallery/images.json";
     import orderTypes from "../../ordertypes.json";
+    import FancyButton from "../../components/FancyButton.svelte";
+    import { goto, invalidateAll } from "$app/navigation";
 
     class CartItem {
         picture: number = 0;
@@ -82,6 +84,15 @@
     }
     onMount(() => loadCartItemsNormDisp());
 
+    let cartTotal: number = 0;
+    $: cartItemsNormDisp && recalcCartTotal();
+    function recalcCartTotal() {
+        cartTotal = cartItemsNormDisp.reduce((prev, curr) => {
+            return prev + curr.priceSum;
+        }, 0);
+        console.log(`Total price: ${cartTotal}`);
+    }
+
     function removeItemFromCart(item: CartItemNormDisp) {
         console.log(`Removing: ${item}`);
 
@@ -122,6 +133,10 @@
             </div>
         {/each}
     </div>
+    <div id="cart-summary">
+        <h3>Order Total: <b>{cartTotal}&euro;</b></h3>
+        <FancyButton callback={_ => console.log("Checkout")} isEnabled={cartTotal > 0}>Proceed to checkout</FancyButton>
+    </div>
 </div>
 
 <style lang="scss">
@@ -131,6 +146,7 @@
         gap: 1rem;
         margin-left: 10rem;
         margin-right: 10rem;
+        margin-bottom: 6rem;
 
         .item {
             background-color: #ccdde4;
@@ -181,5 +197,25 @@
                 }
             }
         }
+    }
+
+    #cart-summary {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: gray;
+        height: 5rem;
+        padding-left: 4rem;
+        padding-right: 4rem;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.7);
+        font-size: large;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        gap: 4rem;
     }
 </style>
