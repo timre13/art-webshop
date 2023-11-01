@@ -16,6 +16,8 @@
         itemName: string = "";
         pricePerItem: number = 0;
         priceSum: number = 0;
+        pictureId: number = 0;
+        orderTypeId: number = 0;
 
         constructor(
             pictureUrl: string,
@@ -23,7 +25,9 @@
             count: number,
             itemName: string,
             pricePerItem: number,
-            priceSum: number
+            priceSum: number,
+            pictureId: number,
+            orderTypeId: number
         ) {
             this.pictureUrl = pictureUrl;
             this.orderTypeStr = orderTypeStr;
@@ -31,6 +35,8 @@
             this.itemName = itemName;
             this.pricePerItem = pricePerItem;
             this.priceSum = priceSum;
+            this.pictureId = pictureId;
+            this.orderTypeId = orderTypeId;
         }
     }
 
@@ -53,17 +59,9 @@
     }
 
     let cartItemsNormDisp: Array<CartItemNormDisp> = [];
-    onMount(() => {
+    function loadCartItemsNormDisp() {
         let cartItemsNorm: Array<Array<any>> = [];
         cartItemsNorm = Object.entries(getCartItems()).map(x => [JSON.parse(x[0]), x[1]]);
-        /*
-        cartItemsNorm = cartItemsNorm.sort((x, y) => {
-            if (x[0].picture == y[0].picture) {
-                return Math.sign(x[0].orderType - y[0].orderType);
-            }
-            return Math.sign(x[0].picture - y[0].picture);
-        });
-        */
         console.log(cartItemsNorm);
 
         cartItemsNormDisp = cartItemsNorm.map(x => {
@@ -76,10 +74,28 @@
                 itemCount,
                 imgData.title,
                 orderType.price,
-                orderType.price * itemCount
+                orderType.price * itemCount,
+                x[0].picture,
+                x[0].orderType
             );
         });
-    });
+    }
+    onMount(() => loadCartItemsNormDisp());
+
+    function removeItemFromCart(item: CartItemNormDisp) {
+        console.log(`Removing: ${item}`);
+
+        if (!localStorage) {
+            return;
+        }
+
+        let cartItems: Array<CartItem> = JSON.parse(localStorage.getItem("cartItems") || "[]");
+        cartItems = cartItems.filter(x => x.picture != item.pictureId || x.orderType != item.orderTypeId);
+
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+        loadCartItemsNormDisp();
+    }
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
@@ -95,7 +111,7 @@
                 <div class="item-col">Count: <b>{item.count}</b></div>
                 <div class="item-col">Total for item: <b>{item.priceSum}&euro;</b></div>
                 <div class="item-col">
-                    <button class="remove-btn" title="Remove from cart" on:click={_ => console.log(item)}
+                    <button class="remove-btn" title="Remove from cart" on:click={() => removeItemFromCart(item)}
                         ><svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 384 512"
                             ><path
                                 d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
