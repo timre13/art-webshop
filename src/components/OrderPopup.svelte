@@ -5,15 +5,7 @@
 
     export let imageIndex: number;
 
-    let popupOptions = [
-        { text: "10cm x 8cm card sized paper print", price: 5 },
-        { text: "10cm x 8cm card sized paper print (laminated)", price: 10 },
-        { text: "10cm x 8cm card sized metal print", price: 55 },
-        { text: "100cm x 80cm wall decor print", price: 30 },
-        { text: "100cm x 80cm wall decor print(laminated)", price: 50 },
-        { text: "100cm x 80cm wall decor print framed", price: 100 },
-        { text: "100cm x 80cm wall decor metal print ", price: 95 }
-    ];
+    import popupOptions from "../ordertypes.json";
 
     let orderCounts: Array<number> = Array(popupOptions.length).fill(0);
     let orderSum: number = 0;
