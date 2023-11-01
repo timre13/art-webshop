@@ -107,19 +107,50 @@
 
         loadCartItemsNormDisp();
     }
+
+    function onItemCountChanged(e: Event) {
+        const target = e.target as HTMLInputElement;
+        target.value = Math.max(Number.parseInt(target.value), 1).toString();
+
+        // Remélem, hogy soha többé nem kell JS/TS-hez nyúlnom (ikszdé)
+        // Ne módosítsd a lista markup-ot, mert ez eltörik
+        const listI: number =
+            Number.parseInt(
+                target.parentElement?.parentElement?.firstChild?.firstChild?.childNodes[1].nodeValue ?? ""
+            ) - 1;
+
+        let cartItems: Array<CartItem> = JSON.parse(localStorage.getItem("cartItems") || "[]");
+        console.log(listI);
+        console.log(cartItems[listI]);
+        cartItems[listI].count = Number.parseInt(target.value);
+
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        loadCartItemsNormDisp();
+    }
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
 <div id="content-inner">
     <h1>Cart</h1>
     <div id="item-list">
-        {#each cartItemsNormDisp as item}
+        {#each cartItemsNormDisp as item, i}
             <div class="item">
+                <div class="item-col"><i>#{i + 1}</i></div>
                 <div class="item-col img-col"><img src={item.pictureUrl} /></div>
                 <div class="item-col">Picture: <b>{item.itemName}</b></div>
                 <div class="item-col">Format: <b>{item.orderTypeStr}</b></div>
                 <div class="item-col">Price/item: <b>{item.pricePerItem}&euro;</b></div>
-                <div class="item-col">Count: <b>{item.count}</b></div>
+                <div class="item-col">
+                    Count:
+                    <input
+                        value={item.count}
+                        class="item-cnt-in"
+                        type="number"
+                        min="1"
+                        title="Change number of items to order"
+                        on:change={onItemCountChanged}
+                    />
+                </div>
                 <div class="item-col">Total for item: <b>{item.priceSum}&euro;</b></div>
                 <div class="item-col">
                     <button class="remove-btn" title="Remove from cart" on:click={() => removeItemFromCart(item)}
@@ -152,9 +183,10 @@
             background-color: #ccdde4;
             border-radius: 10px;
             padding-right: 1rem;
+            padding-left: 1rem;
 
             display: grid;
-            grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr auto;
+            grid-template-columns: auto 1fr 1fr 2fr 1fr 1fr 1fr auto;
             gap: 1rem;
 
             .item-col {
@@ -178,6 +210,12 @@
                             fill: rgb(255, 66, 66);
                         }
                     }
+                }
+
+                .item-cnt-in {
+                    width: 3rem;
+                    text-align: right;
+                    font-weight: bold;
                 }
             }
 
