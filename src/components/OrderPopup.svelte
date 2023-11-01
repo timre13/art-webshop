@@ -24,6 +24,17 @@
         showNoItemsMsg = false;
     }
 
+    class CartItem {
+        picture: number = 0;
+        orderType: number = 0;
+        count: number = 0;
+
+        constructor(picture: number, orderType: number, count: number) {
+            this.picture = picture;
+            this.orderType = orderType;
+            this.count = count;
+        }
+    }
     function onAddToCartButtonClick() {
         console.log("Add to cart");
         if (orderCounts.every(x => x == 0)) {
@@ -31,12 +42,18 @@
             return;
         }
 
-        let cartItems: Array<object> = JSON.parse(localStorage.getItem("cartItems") || "[]");
+        let cartItems: Array<CartItem> = JSON.parse(localStorage.getItem("cartItems") || "[]");
         console.log(cartItems);
 
         orderCounts.forEach((val, i) => {
             if (val != 0) {
-                cartItems.push({ picture: imageIndex, orderType: i, count: val });
+                // If an item is already in the cart, increment the count. Otherwise add to the cart.
+                const foundI = cartItems.findIndex((x: any) => x.picture == imageIndex && x.orderType == i);
+                if (foundI == -1) {
+                    cartItems.push({ picture: imageIndex, orderType: i, count: val });
+                } else {
+                    cartItems[foundI].count += val;
+                }
             }
         });
 
