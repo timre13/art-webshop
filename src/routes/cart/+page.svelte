@@ -132,6 +132,12 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 <div id="content-inner">
     <h1>Cart</h1>
+    {#if cartItemsNormDisp.length == 0}
+        <h2 id="cart-empty-label">
+            The cart is empty.
+            <br />You can order items from the <a href="/gallery">Gallery</a>.
+        </h2>
+    {/if}
     <div id="item-list">
         {#each cartItemsNormDisp as item, i}
             <div class="item">
@@ -233,6 +239,21 @@
                     height: 100%;
                     max-height: 100%;
                 }
+            }
+        }
+    }
+
+    #cart-empty-label {
+        width: 100%;
+        margin-top: 5%;
+        text-align: center;
+
+        a {
+            color: steelblue;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
             }
         }
     }
