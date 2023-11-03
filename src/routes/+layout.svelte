@@ -6,7 +6,6 @@
     <div id="header-right">
         <a href="/gallery">Gallery</a>
         <a href="/quote">Quote</a>
-        <a href="/">About Me</a>
         <a href="/cart" class="svg-link"
             ><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"
                 ><path
