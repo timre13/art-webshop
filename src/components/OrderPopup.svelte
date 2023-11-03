@@ -159,6 +159,11 @@
             justify-content: space-between;
             flex-wrap: wrap;
 
+            @media (max-width: 1300px) {
+                width: fit-content;
+                height: fit-content;
+            }
+
             .left-col {
                 height: 100%;
                 max-width: 50%;
@@ -167,12 +172,28 @@
                 align-items: start;
                 gap: 1rem;
 
+                @media (max-width: 1300px) {
+                    width: 100%;
+                    max-width: 100%;
+                    flex-direction: row;
+                    height: fit-content;
+                    margin-bottom: 1rem;
+                }
+
+                div {
+                    max-width: 100%;
+                    text-align: justify;
+                }
+
                 img {
                     height: 100%;
                     max-height: 90%;
                     max-width: 100%;
                     object-fit: contain;
                     object-position: 0px 0px;
+                    @media (max-width: 1300px) {
+                        max-width: 30%;
+                    }
                 }
             }
 
@@ -181,6 +202,11 @@
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: end;
+                width: 50%;
+
+                @media (max-width: 1300px) {
+                    width: 100%;
+                }
 
                 .right-col-top {
                     .right-col-row {
@@ -200,6 +226,10 @@
                             display: flex;
                             justify-content: end;
                         }
+                    }
+
+                    @media (max-width: 1300px) {
+                        margin-bottom: 1rem;
                     }
                 }
 
