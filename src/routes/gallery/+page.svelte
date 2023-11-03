@@ -88,6 +88,7 @@
                 width: 100%;
                 padding-left: 1rem;
                 margin-bottom: -1rem;
+                font-size: medium;
 
                 transition: transform 300ms, opacity 300ms;
                 transition-timing-function: ease-in-out;
