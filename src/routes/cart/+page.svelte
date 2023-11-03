@@ -139,15 +139,24 @@
         </h2>
     {/if}
     <div id="item-list">
+        <div id="list-header">
+            <div class="header-col"><i>#</i></div>
+            <div class="header-col">Thumbnail</div>
+            <div class="header-col">Title</div>
+            <div class="header-col">Format</div>
+            <div class="header-col">Price/Item</div>
+            <div class="header-col">Count</div>
+            <div class="header-col">Total</div>
+            <div class="header-col" />
+        </div>
         {#each cartItemsNormDisp as item, i}
             <div class="item">
-                <div class="item-col"><i>#{i + 1}</i></div>
+                <div class="item-col"><i>{i + 1}</i></div>
                 <div class="item-col img-col"><img src={item.pictureUrl} /></div>
-                <div class="item-col">Picture: <b>{item.itemName}</b></div>
-                <div class="item-col">Format: <b>{item.orderTypeStr}</b></div>
-                <div class="item-col">Price/item: <b>{item.pricePerItem}&euro;</b></div>
+                <div class="item-col">{item.itemName}</div>
+                <div class="item-col">{item.orderTypeStr}</div>
+                <div class="item-col">{item.pricePerItem}&euro;</div>
                 <div class="item-col">
-                    Count:
                     <input
                         value={item.count}
                         class="item-cnt-in"
@@ -157,7 +166,7 @@
                         on:change={onItemCountChanged}
                     />
                 </div>
-                <div class="item-col">Total for item: <b>{item.priceSum}&euro;</b></div>
+                <div class="item-col"><b>{item.priceSum}&euro;</b></div>
                 <div class="item-col">
                     <button class="remove-btn" title="Remove from cart" on:click={() => removeItemFromCart(item)}
                         ><svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 384 512"
@@ -185,6 +194,34 @@
         margin-right: 10rem;
         margin-bottom: 6rem;
 
+        @media (max-width: 1400px) {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        #list-header {
+            position: sticky;
+            top: 50px;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-right: 1rem;
+            padding-left: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+
+            display: grid;
+            grid-template-columns: 1rem 1fr 1.5fr 2fr 1fr 1fr 1fr 2rem;
+            gap: 1rem;
+
+            .header-col {
+                font-weight: bold;
+            }
+
+            .header-col:nth-of-type(2) {
+                width: 10rem;
+                margin-left: 1rem;
+            }
+        }
+
         .item {
             background-color: #ccdde4;
             border-radius: 10px;
@@ -192,7 +229,7 @@
             padding-left: 1rem;
 
             display: grid;
-            grid-template-columns: auto 1fr 1fr 2fr 1fr 1fr 1fr auto;
+            grid-template-columns: 1rem 1fr 1.5fr 2fr 1fr 1fr 1fr 2rem;
             gap: 1rem;
 
             .item-col {
@@ -264,17 +301,26 @@
         left: 0;
         width: 100%;
         background-color: gray;
-        height: 5rem;
         padding-left: 4rem;
         padding-right: 4rem;
         color: white;
         background-color: rgba(0, 0, 0, 0.7);
         font-size: large;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
 
         display: flex;
         flex-direction: row;
         justify-content: end;
         align-items: center;
-        gap: 4rem;
+        gap: 1rem 4rem;
+
+        @media (max-width: 900px) {
+            justify-content: center;
+        }
+
+        @media (max-width: 640px) {
+            flex-direction: column;
+        }
     }
 </style>
