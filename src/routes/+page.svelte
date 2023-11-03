@@ -2,8 +2,12 @@
     <div id="welcome">
         <h1>Art Website</h1>
         <div class="intro">
-            <h2 class="introtext">Hello my name is [NAME] and I am from <a href="https://www.openstreetmap.org/relation/1130390">[CITY]</a> , <a href="https://www.openstreetmap.org/relation/21335">[COUNTRY]</a>. I am [AGE] years old. I formally study(/ studied) at <a href="https://szbi-pg.hu">[ALMA MATER]</a>, from [YEAR] to [YEAR]. I'm most comfortable with <a href="">[ARTSTYLE]</a> and <a href="">[ARTSTYLE]</a>, and you can check out my work on <a href="facebook.com">[SOCIAL MEDIA]</a>, <a href="twitter.com">[SOCIAL MEDIA]</a> and <a href="instagram.com">[SOCIAL MEDIA]</a>.</h2>
+            <h2 class="introtitle">Hello my name is [NAME]! Nice to meet you!</h2>
+            
+        </div>
+        <div id="Longerintro">
             <img class="intropic" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="A very flattering picture">
+            <h2 class="introtitle">I am from <a href="https://www.openstreetmap.org/relation/1130390">[CITY]</a> , <a href="https://www.openstreetmap.org/relation/21335">[COUNTRY]</a>. I am [AGE] years old. I formally study(/ studied) at <a href="https://szbi-pg.hu">[ALMA MATER]</a>, from [YEAR] to [YEAR]. I'm most comfortable with <a href="">[ARTSTYLE]</a> and <a href="">[ARTSTYLE]</a>, and you can check out my work on <a href="facebook.com">[SOCIAL MEDIA]</a>, <a href="twitter.com">[SOCIAL MEDIA]</a> and <a href="instagram.com">[SOCIAL MEDIA]</a>.</h2>
         </div>
         
     </div>
@@ -13,15 +17,18 @@
     #content-inner {
         margin-top: -50px;
         background-image: url(bg1.png);
-        background-size: cover;
-        min-height: 100vh;
+        
+        background-size: auto;
+        min-height: 80vh;
+        max-height: 100vh;
+        background-repeat: no-repeat;
 
         #welcome {
             padding-top: 15vh;
             padding-left: 5rem;
 
             h1 {
-                font-size: 60px;
+                font-size: 80px;
             }
 
             h2 {
@@ -35,13 +42,29 @@
             .intro{
                 display: flex;
                 margin-right: 30px;
-                .introtext{
+                .introtitle{
                     flex: 1;
                     margin-right: 50px;
+                    font-size: 62px;
+                }
+                
+                
+            }
+            #Longerintro{
+                margin-top: 600px;
+                display: flex;
+                margin-right: 50px;
+                .introtitle{
+                    flex: 1;
+                    font-size: 30px;
+                    margin-left: 10px;
                 }
                 .intropic{
-                    width: 400px;
+                    width: 300px;
+                    height: 300px;
                 }
+                max-height: 100vh;
+                min-height: 80vh;
             }
         }
     }
