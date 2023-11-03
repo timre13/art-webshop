@@ -1,3 +1,7 @@
+<script>
+    import FancyButton from "../../components/FancyButton.svelte";
+
+</script>
 <div>
     <form action="POST">
         <label>
@@ -47,9 +51,11 @@
             <textarea class="inpf" name="request" style="height: 220px;"></textarea>
         </label>
         <br>
-        <button class="fancy-button" type="submit">
-            Submit
-        </button>
+        <div class="submitDiv">
+            <FancyButton callback={() => {
+                console.log("Submitted quote");
+            }}>Submit</FancyButton>
+        </div>
     </form>
 </div>
 <style>
@@ -61,11 +67,16 @@
     }
     form{
         margin-left: 67px;
-        margin-top: 100px;
+        margin-top: 60px;
+        text-align: left;
     }
     .inpf{
         height: 28px;
         width: 330px;
+    }
+    .submitDiv{
+        margin-top: 10px;
+        margin-left: 170px;
     }
 
 
