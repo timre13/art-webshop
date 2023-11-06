@@ -1,3 +1,4 @@
+<title>Gallery</title>
 <script lang="ts">
     import { onMount } from "svelte";
 
@@ -22,9 +23,11 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
+<h1>Gallery</h1>
 <div id="content-inner">
-    <p>Foobar</p>
+
     <div id="gallery">
+        
         {#each images as image, index}
             <div
                 class="gallery-item"
@@ -47,6 +50,18 @@
 </div>
 
 <style lang="scss">
+    h1 {
+        font-size: 80px !important; 
+        margin-left: 200px;
+        }
+
+        h2 {
+            font-size: 20px !important;
+        }
+
+        h1{
+            font-variant: small-caps !important;
+        }
     #gallery {
         display: flex;
         flex-wrap: wrap;

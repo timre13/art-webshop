@@ -1,3 +1,4 @@
+
 <header>
     <div id="header-left">
         <a href="/">Art website</a>
@@ -25,9 +26,22 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Inter", sans-serif;
+        h1 {
+        font-size: 80px !important; 
+        }
+
+        h2 {
+            font-size: 40px !important;
+        }
+
+        h1,
+        h2 {
+            font-variant: small-caps !important;
+        }
     }
 
     $header-height: 50px;
+    
 
     #content {
         padding-top: $header-height;

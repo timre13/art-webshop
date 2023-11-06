@@ -1,8 +1,10 @@
+<title>Quote</title>
 <script>
     import FancyButton from "../../components/FancyButton.svelte";
 
 </script>
 <div>
+    <h1>Get a quote</h1>
     <form action="POST">
         <label>
             First name: <span style="color: red;">*</span>
@@ -59,6 +61,22 @@
     </form>
 </div>
 <style>
+    h1 {
+        font-size: 80px !important; 
+        margin-left: 80px;
+        }
+
+        h2 {
+            font-size: 40px !important;
+        }
+
+        h1,
+        h2 {
+            font-variant: small-caps !important;
+        }
+    div{
+        margin-top: 20px;
+    }
     label{
         font-size: 24px;
     }
@@ -67,7 +85,7 @@
     }
     form{
         margin-left: 67px;
-        margin-top: 60px;
+        
         text-align: left;
     }
     .inpf{

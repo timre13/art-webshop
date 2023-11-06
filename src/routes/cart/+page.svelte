@@ -1,3 +1,4 @@
+<title>Cart</title>
 <script lang="ts">
     import { onMount } from "svelte";
     import imageData from "../gallery/images.json";
@@ -131,7 +132,7 @@
 
 <!-- svelte-ignore a11y-missing-attribute -->
 <div id="content-inner">
-    <h1>Cart</h1>
+    <h1>Your cart</h1>
     {#if cartItemsNormDisp.length == 0}
         <h2 id="cart-empty-label">
             The cart is empty.
@@ -186,6 +187,19 @@
 </div>
 
 <style lang="scss">
+    h1 {
+        font-size: 80px !important; 
+        margin-left: 80px;
+    }
+
+    h2 {
+        font-size: 40px !important;
+    }
+
+    h1,
+    h2 {
+        font-variant: small-caps !important;
+    }
     #item-list {
         display: flex;
         flex-direction: column;
