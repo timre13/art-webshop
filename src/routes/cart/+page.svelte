@@ -1,10 +1,8 @@
-<title>Cart</title>
 <script lang="ts">
     import { onMount } from "svelte";
     import imageData from "../gallery/images.json";
     import orderTypes from "../../ordertypes.json";
     import FancyButton from "../../components/FancyButton.svelte";
-    import { goto, invalidateAll } from "$app/navigation";
 
     class CartItem {
         picture: number = 0;
@@ -130,6 +128,8 @@
     }
 </script>
 
+<title>Cart</title>
+
 <!-- svelte-ignore a11y-missing-attribute -->
 <div id="content-inner">
     <h1>Your cart</h1>
@@ -140,16 +140,18 @@
         </h2>
     {/if}
     <div id="item-list">
-        <div id="list-header">
-            <div class="header-col"><i>#</i></div>
-            <div class="header-col">Thumbnail</div>
-            <div class="header-col">Title</div>
-            <div class="header-col">Format</div>
-            <div class="header-col">Price/Item</div>
-            <div class="header-col">Count</div>
-            <div class="header-col">Total</div>
-            <div class="header-col" />
-        </div>
+        {#if cartItemsNormDisp.length != 0}
+            <div id="list-header">
+                <div class="header-col"><i>#</i></div>
+                <div class="header-col">Thumbnail</div>
+                <div class="header-col">Title</div>
+                <div class="header-col">Format</div>
+                <div class="header-col">Price/Item</div>
+                <div class="header-col">Count</div>
+                <div class="header-col">Total</div>
+                <div class="header-col" />
+            </div>
+        {/if}
         {#each cartItemsNormDisp as item, i}
             <div class="item">
                 <div class="item-col"><i>{i + 1}</i></div>
@@ -188,7 +190,7 @@
 
 <style lang="scss">
     h1 {
-        font-size: 80px !important; 
+        font-size: 80px !important;
         margin-left: 80px;
     }
 
