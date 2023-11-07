@@ -18,6 +18,7 @@
     #content-inner {
         margin-top: -50px;
         background-image: url(bg1.png);
+        background-attachment: fixed;
         
         background-size: auto;
         min-height: 80vh;
