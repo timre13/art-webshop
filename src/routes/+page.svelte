@@ -54,7 +54,7 @@
                 
             }
             #Longerintro{
-                margin-top: 600px;
+                margin-top: 100vh;
                 display: flex;
                 margin-right: 50px;
                 .introtitle{
