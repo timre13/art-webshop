@@ -116,7 +116,7 @@
         // Ne módosítsd a lista markup-ot, mert ez eltörik
         const listI: number =
             Number.parseInt(
-                target.parentElement?.parentElement?.firstChild?.firstChild?.childNodes[1].nodeValue ?? ""
+                target.parentElement?.parentElement?.firstChild?.firstChild?.childNodes[0].nodeValue ?? ""
             ) - 1;
 
         let cartItems: Array<CartItem> = JSON.parse(localStorage.getItem("cartItems") || "[]");
