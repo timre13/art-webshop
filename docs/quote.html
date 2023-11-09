@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="./_app/immutable/assets/0.c3820229.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/5.a6a04f46.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/FancyButton.cb041183.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.a1233129.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.ce52b9dc.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.3252b747.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/paths.f795a52f.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.986d4e38.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.6ca43f9a.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.15ee1ed5.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/5.ee587ed0.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/FancyButton.8ec65b1a.js">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">  <header class="svelte-vvhpqf" data-svelte-h="svelte-lflm7s"><div id="header-left" class="svelte-vvhpqf"><a href="/art-webshop/" class="svelte-vvhpqf">Art website</a></div> <div id="header-right" class="svelte-vvhpqf"><a href="/art-webshop/gallery" class="svelte-vvhpqf">Gallery</a> <a href="/art-webshop/quote" class="svelte-vvhpqf">Quote</a> <a href="/art-webshop/cart" class="svg-link svelte-vvhpqf"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" class="svelte-vvhpqf"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" class="svelte-vvhpqf"></path></svg></a></div></header> <div id="content" class="svelte-vvhpqf"><title data-svelte-h="svelte-ceyjck">Quote</title>  <div class="svelte-1c4mxlz"><h1 class="svelte-1c4mxlz" data-svelte-h="svelte-1ric703">Get a quote</h1> <form action="POST" class="svelte-1c4mxlz"><label class="svelte-1c4mxlz" data-svelte-h="svelte-1rff02k">First name: <span style="color: red;">*</span> <br> <input class="inpf svelte-1c4mxlz" name="fname" type="text"></label> <br> <label class="svelte-1c4mxlz" data-svelte-h="svelte-4mqxyc">Last name: 
+            <br> <input class="inpf svelte-1c4mxlz" name="lname" type="text"></label> <br> <label class="svelte-1c4mxlz" data-svelte-h="svelte-9unjpl">Email: <span style="color: red;">*</span> <br> <input class="inpf svelte-1c4mxlz" name="email" type="email"></label> <br> <label class="svelte-1c4mxlz" data-svelte-h="svelte-1mgc2c3">Phone number:
+            <br> <input class="inpf svelte-1c4mxlz" type="tel" name="phone"></label> <br> <label class="svelte-1c4mxlz" data-svelte-h="svelte-av8wzf">I prefer contact by... <span style="color: red;">*</span> <br> <label class="radiob svelte-1c4mxlz"><input type="radio" name="contact" id="email">
+                E-mail</label> <label class="radiob svelte-1c4mxlz"><input type="radio" name="contact" id="whatsapp">
+                Text(Whatsapp)</label> <label class="radiob svelte-1c4mxlz"><input type="radio" name="contact" id="other">
+                Other (in request)</label></label> <br> <label class="svelte-1c4mxlz" data-svelte-h="svelte-ntqquj">Request: <span style="color: red;">*</span> <br> <textarea class="inpf svelte-1c4mxlz" name="request" style="height: 220px;"></textarea></label> <br> <div class="submitDiv svelte-1c4mxlz"><button class="fancy-button svelte-642kn9" >Submit </button></div></form> </div> </div> 
+			
+			<script>
+				{
+					__sveltekit_8ac3x9 = {
+						assets: "/art-webshop",
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("./_app/immutable/entry/start.a1233129.js"),
+						import("./_app/immutable/entry/app.986d4e38.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 5],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

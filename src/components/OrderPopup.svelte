@@ -1,11 +1,11 @@
 <script lang="ts">
     import { crossfade, draw, fade, scale, slide } from "svelte/transition";
-    import images from "../routes/gallery/images.json";
+    import images from "$lib/images.json";
     import FancyButton from "./FancyButton.svelte";
 
     export let imageIndex: number;
 
-    import popupOptions from "../ordertypes.json";
+    import popupOptions from "$lib/ordertypes.json";
 
     let orderCounts: Array<number> = Array(popupOptions.length).fill(0);
     let orderSum: number = 0;

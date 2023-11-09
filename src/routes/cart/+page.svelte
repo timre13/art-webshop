@@ -1,7 +1,8 @@
 <script lang="ts">
+    import { base } from "$app/paths";
     import { onMount } from "svelte";
-    import imageData from "../gallery/images.json";
-    import orderTypes from "../../ordertypes.json";
+    import imageData from "$lib/images.json";
+    import orderTypes from "$lib/ordertypes.json";
     import FancyButton from "../../components/FancyButton.svelte";
 
     class CartItem {
@@ -136,7 +137,7 @@
     {#if cartItemsNormDisp.length == 0}
         <h2 id="cart-empty-label">
             The cart is empty.
-            <br />You can order items from the <a href="/gallery">Gallery</a>.
+            <br />You can order items from the <a href="{base}/gallery">Gallery</a>.
         </h2>
     {/if}
     <div id="item-list">

@@ -1,4 +1,3 @@
-<title>Gallery</title>
 <script lang="ts">
     import { onMount } from "svelte";
 
@@ -14,20 +13,20 @@
         }
     }
 
-    import images from "./images.json";
+    import images from "$lib/images.json";
     import OrderPopup from "../../components/OrderPopup.svelte";
 
     let openImage: number = -1;
 </script>
+
+<title>Gallery</title>
 
 <!-- svelte-ignore a11y-missing-attribute -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <h1>Gallery</h1>
 <div id="content-inner">
-
     <div id="gallery">
-        
         {#each images as image, index}
             <div
                 class="gallery-item"
@@ -51,17 +50,17 @@
 
 <style lang="scss">
     h1 {
-        font-size: 80px !important; 
+        font-size: 80px !important;
         margin-left: 200px;
-        }
+    }
 
-        h2 {
-            font-size: 20px !important;
-        }
+    h2 {
+        font-size: 20px !important;
+    }
 
-        h1{
-            font-variant: small-caps !important;
-        }
+    h1 {
+        font-variant: small-caps !important;
+    }
     #gallery {
         display: flex;
         flex-wrap: wrap;

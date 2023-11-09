@@ -30,5 +30,8 @@
 		"tabWidth": 4,
 		"trailingComma": "none"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@sveltejs/adapter-static": "^2.0.3"
+	}
 }
